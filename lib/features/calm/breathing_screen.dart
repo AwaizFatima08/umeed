@@ -1,11 +1,16 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../crisis/help_now_button.dart';
+import 'breathing_patterns.dart';
 
-/// Paced breathing, 4 s in and 6 s out.
+/// Guided breathing for any [BreathingPattern].
 class BreathingScreen extends StatefulWidget {
-  const BreathingScreen({super.key});
+  const BreathingScreen({super.key, required this.patternId});
+
+  final String patternId;
 
   @override
   State<BreathingScreen> createState() => _BreathingScreenState();
@@ -13,11 +18,11 @@ class BreathingScreen extends StatefulWidget {
 
 class _BreathingScreenState extends State<BreathingScreen>
     with SingleTickerProviderStateMixin {
-  static const _inFraction = 0.4;
-
+  late final BreathingPattern _pattern = breathingPatternById(widget.patternId);
+  late final List<BreathSegment> _segments = buildSegments(_pattern);
   late final AnimationController _controller = AnimationController(
     vsync: this,
-    duration: const Duration(seconds: 10),
+    duration: Duration(seconds: _pattern.cycleSeconds),
   );
   bool _running = false;
 
@@ -32,56 +37,81 @@ class _BreathingScreenState extends State<BreathingScreen>
     if (_running) {
       _controller.repeat();
     } else {
-      _controller.animateTo(0, duration: const Duration(milliseconds: 600));
+      _controller.stop();
+      _controller.value = 0;
     }
   }
 
-  double _scale(double t) {
-    final p = t < _inFraction ? t / _inFraction : 1 - (t - _inFraction) / (1 - _inFraction);
-    return 0.55 + 0.45 * Curves.easeInOut.transform(p);
-  }
+  BreathSegment _segmentAt(double seconds) => _segments.firstWhere(
+        (s) => seconds < s.end,
+        orElse: () => _segments.last,
+      );
+
+  String _label(AppLocalizations l, BreathPhase p) => switch (p) {
+        BreathPhase.inhale => l.breatheIn,
+        BreathPhase.sip => l.breatheSip,
+        BreathPhase.hold => l.breathHold,
+        BreathPhase.exhale => l.breatheOut,
+      };
 
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
     final scheme = Theme.of(context).colorScheme;
+    final text = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        title: Text(l.breathingTitle),
+        title: Text(_pattern.name(l)),
         actions: const [HelpNowButton(), SizedBox(width: 12)],
       ),
-      body: Center(
+      body: SafeArea(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           children: [
-            AnimatedBuilder(
-              animation: _controller,
-              builder: (context, _) {
-                final t = _controller.value;
-                final label = !_running
-                    ? ''
-                    : (t < _inFraction ? l.breatheIn : l.breatheOut);
-                return Container(
-                  width: 240 * _scale(t),
-                  height: 240 * _scale(t),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: scheme.primaryContainer,
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    label,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                );
-              },
+            Expanded(
+              child: Center(
+                child: AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, _) {
+                    final seconds = _controller.value * _pattern.cycleSeconds;
+                    final seg = _segmentAt(seconds);
+                    final p = ((seconds - seg.start) / (seg.end - seg.start)).clamp(0.0, 1.0);
+                    final scale = seg.from + (seg.to - seg.from) * Curves.easeInOut.transform(p);
+                    final remaining = math.max(1, (seg.end - seconds).ceil());
+                    final size = 250 * scale;
+                    return Container(
+                      width: size,
+                      height: size,
+                      decoration: BoxDecoration(shape: BoxShape.circle, color: scheme.primaryContainer),
+                      alignment: Alignment.center,
+                      child: !_running
+                          ? const SizedBox.shrink()
+                          : Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  _label(l, seg.phase),
+                                  textAlign: TextAlign.center,
+                                  style: text.titleMedium,
+                                ),
+                                Text('$remaining', style: text.headlineMedium),
+                              ],
+                            ),
+                    );
+                  },
+                ),
+              ),
             ),
-            const SizedBox(height: 40),
-            FilledButton(
-              onPressed: _toggle,
-              child: Text(_running ? l.stop : l.start),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Text(
+                l.breathHint,
+                textAlign: TextAlign.center,
+                style: text.bodySmall,
+              ),
             ),
+            const SizedBox(height: 16),
+            FilledButton(onPressed: _toggle, child: Text(_running ? l.stop : l.start)),
+            const SizedBox(height: 32),
           ],
         ),
       ),

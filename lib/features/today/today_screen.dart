@@ -34,7 +34,13 @@ class TodayScreen extends ConsumerWidget {
         ),
         const SizedBox(height: 12),
         OutlinedButton.icon(
-          onPressed: () => context.push('/breathing'),
+          onPressed: () => context.push('/distress'),
+          icon: const Icon(Icons.fact_check_outlined),
+          label: Text(l.distressTitle),
+        ),
+        const SizedBox(height: 12),
+        OutlinedButton.icon(
+          onPressed: () => context.push('/breathing/slow'),
           icon: const Icon(Icons.air),
           label: Text(l.calmCta),
         ),
