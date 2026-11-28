@@ -33,14 +33,16 @@ void _tallScreen(WidgetTester tester) {
 }
 
 void main() {
-  testWidgets('crisis screen offers WhatsApp guidance and no helpline number', (tester) async {
+  testWidgets('crisis screen offers HomiLabs email only', (tester) async {
     await tester.pumpWidget(await _app());
     await tester.pumpAndSettle();
     await tester.tap(find.text('I need help now'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Open WhatsApp'), findsOneWidget);
-    expect(find.text('0314 0790080'), findsOneWidget);
+    expect(find.text('Email us'), findsOneWidget);
+    expect(find.text('homilabs.mentalhealth@gmail.com'), findsOneWidget);
+    expect(find.text('Facebook page'), findsNothing);
+    expect(find.textContaining('WhatsApp'), findsNothing);
     expect(find.textContaining('Umang'), findsNothing);
     expect(find.textContaining('not an emergency service'), findsOneWidget);
   });

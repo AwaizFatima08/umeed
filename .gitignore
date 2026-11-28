@@ -22,3 +22,6 @@ android/key.properties
 # Secrets
 .env
 *.pem
+
+# Built release packages (large binaries, rebuildable)
+/releases/

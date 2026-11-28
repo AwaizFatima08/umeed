@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../app/theme.dart';
 import '../../l10n/app_localizations.dart';
 import 'contacts.dart';
-import 'open_whatsapp.dart';
+import 'open_link.dart';
 
 class CrisisScreen extends StatelessWidget {
   const CrisisScreen({super.key});
@@ -33,15 +33,15 @@ class CrisisScreen extends StatelessWidget {
                   Text(l.guidanceBody, style: contentStyle(context, text.bodyMedium)),
                   const SizedBox(height: 4),
                   Text(
-                    guidanceWhatsAppDisplay,
+                    supportEmail,
                     textDirection: TextDirection.ltr,
                     style: text.titleSmall,
                   ),
                   const SizedBox(height: 12),
                   FilledButton.icon(
-                    onPressed: () => openGuidanceWhatsApp(context),
-                    icon: const Icon(Icons.chat_outlined, size: 18),
-                    label: Text(l.openWhatsApp),
+                    onPressed: () => openLink(context, supportEmailUri()),
+                    icon: const Icon(Icons.mail_outline, size: 18),
+                    label: Text(l.emailUs),
                   ),
                   const SizedBox(height: 8),
                   Text(l.guidancePrivacy, style: text.bodySmall),
@@ -49,8 +49,6 @@ class CrisisScreen extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 16),
-          Text(l.findHelpline, style: contentStyle(context, text.bodyMedium)),
           const SizedBox(height: 24),
           OutlinedButton.icon(
             onPressed: () => context.push('/breathing/slow'),

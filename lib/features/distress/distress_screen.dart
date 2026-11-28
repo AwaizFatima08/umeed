@@ -4,7 +4,8 @@ import 'package:go_router/go_router.dart';
 import '../../app/theme.dart';
 import '../../l10n/app_localizations.dart';
 import '../crisis/help_now_button.dart';
-import '../crisis/open_whatsapp.dart';
+import '../crisis/contacts.dart';
+import '../crisis/open_link.dart';
 import 'distress_scoring.dart';
 
 /// Short guided distress check. Answers are held in memory only.
@@ -141,8 +142,8 @@ class _DistressScreenState extends State<DistressScreen> {
         else ...[
           if (result.level == DistressLevel.talkSoon) ...[
             FilledButton.icon(
-              onPressed: () => openGuidanceWhatsApp(context),
-              icon: const Icon(Icons.chat_outlined, size: 18),
+              onPressed: () => openLink(context, supportEmailUri()),
+              icon: const Icon(Icons.mail_outline, size: 18),
               label: Text(l.distressTalkCta),
             ),
             const SizedBox(height: 10),

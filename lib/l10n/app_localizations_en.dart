@@ -141,10 +141,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'This moment can pass. If you may be in danger, please call your local emergency number now.';
 
   @override
-  String get findHelpline =>
-      'Not in this list? Search for a helpline in your country at findahelpline.com.';
-
-  @override
   String get groundingCta => 'Try a minute of slow breathing';
 
   @override
@@ -174,17 +170,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get guidanceBody =>
-      'Message us on WhatsApp for guidance. This is not an emergency service.';
+      'Write to us for guidance. We read every message, but replies are not immediate and this is not an emergency service.';
 
   @override
   String get guidancePrivacy =>
-      'Your WhatsApp number will be visible to the person who replies.';
+      'Your email address will be visible to the person who replies. Use an address that does not show your name if you prefer.';
 
   @override
-  String get openWhatsApp => 'Open WhatsApp';
+  String get emailUs => 'Email us';
 
   @override
-  String get whatsappFailed => 'Could not open WhatsApp.';
+  String get linkFailed => 'Could not open this link.';
 
   @override
   String get breathingPatterns => 'Breathing patterns';
@@ -526,7 +522,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get distressUrgentCta => 'Get support now';
 
   @override
-  String get distressTalkCta => 'Message on WhatsApp';
+  String get distressTalkCta => 'Email us for guidance';
 
   @override
   String get distressTryCta => 'Try a calming exercise';

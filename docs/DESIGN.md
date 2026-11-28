@@ -68,7 +68,8 @@ This outranks every feature.
 - A persistent **"I need help now"** control on every screen.
 - **Crisis screen**, fully offline: a calm line, helpline by chosen country, emergency number, the user's safety plan, a 60-second grounding exercise, and a pre-written "text someone I trust" message.
 - **Screening safeguard:** any positive answer to a self-harm item (e.g. PHQ-9 item 9) opens the Crisis screen immediately, whatever the total score.
-- **Helpline directory:** bundled offline, per country, versioned, verified by the clinical lead before every release. The user chooses a country (no location permission). If none is known, show a pointer to a global directory and "call local emergency services". Start with a small verified set and grow it.
+- **Decision (29 Nov 2026): no helpline directory or numbers in V1.** The crisis screen shows "call your local emergency number", the HomiLabs support email only (Facebook and YouTube not linked in V1), and grounding. Revisit once numbers can be verified per country (Umang's site was down and sources conflicted).
+- **Helpline directory (deferred past V1):** bundled offline, per country, versioned, verified by the clinical lead before every release. The user chooses a country (no location permission). If none is known, show a pointer to a global directory and "call local emergency services". Start with a small verified set and grow it.
 - No unreliable phrase-detection in free text: it misses cases and gives false reassurance. The always-visible button is the honest design.
 
 ### 3.2 Scope and disclaimers

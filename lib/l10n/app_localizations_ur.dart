@@ -140,10 +140,6 @@ class AppLocalizationsUr extends AppLocalizations {
       'یہ گھڑی گزر جائے گی۔ اگر آپ خطرے میں ہو سکتے ہیں تو براہِ کرم ابھی اپنے مقامی ہنگامی نمبر پر کال کریں۔';
 
   @override
-  String get findHelpline =>
-      'آپ کا ملک اس فہرست میں نہیں؟ findahelpline.com پر اپنے ملک کی ہیلپ لائن تلاش کریں۔';
-
-  @override
   String get groundingCta => 'ایک منٹ آہستہ سانس لیں';
 
   @override
@@ -173,17 +169,17 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get guidanceBody =>
-      'رہنمائی کے لیے واٹس ایپ پر پیغام بھیجیں۔ یہ ہنگامی خدمت نہیں ہے۔';
+      'رہنمائی کے لیے ہمیں لکھیں۔ ہم ہر پیغام پڑھتے ہیں، مگر جواب فوراً نہیں آتا اور یہ ہنگامی خدمت نہیں ہے۔';
 
   @override
   String get guidancePrivacy =>
-      'جواب دینے والے کو آپ کا واٹس ایپ نمبر نظر آئے گا۔';
+      'جواب دینے والے کو آپ کا ای میل ایڈریس نظر آئے گا۔ چاہیں تو ایسا ایڈریس استعمال کریں جس میں آپ کا نام ظاہر نہ ہو۔';
 
   @override
-  String get openWhatsApp => 'واٹس ایپ کھولیں';
+  String get emailUs => 'ہمیں ای میل کریں';
 
   @override
-  String get whatsappFailed => 'واٹس ایپ نہیں کھل سکا۔';
+  String get linkFailed => 'یہ لنک نہیں کھل سکا۔';
 
   @override
   String get breathingPatterns => 'سانس لینے کے طریقے';
@@ -524,7 +520,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get distressUrgentCta => 'ابھی مدد حاصل کریں';
 
   @override
-  String get distressTalkCta => 'واٹس ایپ پر پیغام بھیجیں';
+  String get distressTalkCta => 'رہنمائی کے لیے ہمیں ای میل کریں';
 
   @override
   String get distressTryCta => 'کوئی پرسکون مشق آزمائیں';

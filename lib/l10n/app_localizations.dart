@@ -350,12 +350,6 @@ abstract class AppLocalizations {
   /// **'This moment can pass. If you may be in danger, please call your local emergency number now.'**
   String get crisisBody;
 
-  /// No description provided for @findHelpline.
-  ///
-  /// In en, this message translates to:
-  /// **'Not in this list? Search for a helpline in your country at findahelpline.com.'**
-  String get findHelpline;
-
   /// No description provided for @groundingCta.
   ///
   /// In en, this message translates to:
@@ -413,26 +407,26 @@ abstract class AppLocalizations {
   /// No description provided for @guidanceBody.
   ///
   /// In en, this message translates to:
-  /// **'Message us on WhatsApp for guidance. This is not an emergency service.'**
+  /// **'Write to us for guidance. We read every message, but replies are not immediate and this is not an emergency service.'**
   String get guidanceBody;
 
   /// No description provided for @guidancePrivacy.
   ///
   /// In en, this message translates to:
-  /// **'Your WhatsApp number will be visible to the person who replies.'**
+  /// **'Your email address will be visible to the person who replies. Use an address that does not show your name if you prefer.'**
   String get guidancePrivacy;
 
-  /// No description provided for @openWhatsApp.
+  /// No description provided for @emailUs.
   ///
   /// In en, this message translates to:
-  /// **'Open WhatsApp'**
-  String get openWhatsApp;
+  /// **'Email us'**
+  String get emailUs;
 
-  /// No description provided for @whatsappFailed.
+  /// No description provided for @linkFailed.
   ///
   /// In en, this message translates to:
-  /// **'Could not open WhatsApp.'**
-  String get whatsappFailed;
+  /// **'Could not open this link.'**
+  String get linkFailed;
 
   /// No description provided for @breathingPatterns.
   ///
@@ -1049,7 +1043,7 @@ abstract class AppLocalizations {
   /// No description provided for @distressTalkCta.
   ///
   /// In en, this message translates to:
-  /// **'Message on WhatsApp'**
+  /// **'Email us for guidance'**
   String get distressTalkCta;
 
   /// No description provided for @distressTryCta.
